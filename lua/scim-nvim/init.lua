@@ -13,8 +13,9 @@ end
 -- end
 
 vim.api.nvim_create_user_command('ScimInsert', function (var)
-        local output = io.popen('sc-im ' .. var.args .. ' --nocurses --export_mkd --quit_afterload ')
-        local output = output:read('*a')
+        local command = 'echo \'export "mkd" "/dev/stdout"\' | sc-im --nocurses --quiet --quit_afterload ' .. var.args
+        local handle = io.popen(command)
+        local output = handle:read('*a')
 
         local tbl = {}
         for line in string.gmatch(output, "(.-)\n") do
