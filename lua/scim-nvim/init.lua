@@ -13,7 +13,7 @@ end
 -- end
 
 vim.api.nvim_create_user_command('ScimInsert', function (var)
-        local output = io.popen('sc-im ' .. var.args .. ' --quit_afterload --nocurses --export_mkd')
+        local output = io.popen('sc-im ' .. var.args .. ' --nocurses --export_mkd --quit_afterload ')
         local output = output:read('*a')
 
         local tbl = {}
